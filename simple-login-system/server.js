@@ -1,20 +1,12 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import authRoutes from './routes/auth.js';
-
-dotenv.config();
-
+// server.js
+const express = require('express');
 const app = express();
-app.use(express.json());
-
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("🟢 MongoDB Connected"))
-  .catch(err => console.error("❌ Mongo Error:", err));
-
-app.use('/api/auth', authRoutes);
-
 const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('歡迎來到哥布林的登入村！✨');
+});
+
 app.listen(PORT, () => {
-  console.log(`🌐 Server running at http://localhost:${PORT}`);
+  console.log(`伺服器在 http://localhost:${PORT} 啟動了！`);
 });
